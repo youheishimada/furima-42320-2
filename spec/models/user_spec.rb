@@ -2,17 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-    @user = User.new(
-      nickname: "Taro",
-      email: "test@example.com",
-      password: "abc123",
-      password_confirmation: "abc123",
-      last_name: "山田",
-      first_name: "太郎",
-      last_name_kana: "ヤマダ",
-      first_name_kana: "タロウ",
-      birthday: "1990-01-01"
-    )
+    @user = FactoryBot.build(:user)
   end
 
   describe 'ユーザー新規登録' do
@@ -51,13 +41,19 @@ RSpec.describe User, type: :model do
         expect(@user).to_not be_valid
       end
 
-      it 'passwordが5文字以下では登録できない' do
-        @user.password = 'a1b2'
-        @user.password_confirmation = 'a1b2'
+      it 'パスワードは6文字以上での入力が必須であること' do
+        @user.password = 'a1b2c'  # 5文字
+        @user.password_confirmation = 'a1b2c'
         expect(@user).to_not be_valid
       end
 
-      it 'passwordが英字のみでは登録できない' do
+      it 'パスワードは全角文字を含むと登録できない' do
+       @user.password = 'Ａｂｃ１２３'  # 全角英数字
+       @user.password_confirmation = 'Ａｂｃ１２３'
+       expect(@user).to_not be_valid
+      end
+
+       it 'パスワードは半角英数字混合での入力が必須であること（英字のみ）' do
         @user.password = 'abcdef'
         @user.password_confirmation = 'abcdef'
         expect(@user).to_not be_valid
