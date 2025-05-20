@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: webshimada
+  password:
+  host: localhost
+
+development:
+  <<: *default
+  database: furima_42320_development
+
+test:
+  <<: *default
+  database: furima_42320_test
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
