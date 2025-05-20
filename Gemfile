@@ -71,8 +71,8 @@ group :production do
   gem 'pg'
 end
 
-# group :development, :test do
-#   gem 'rspec-rails'
-# end
+group :development, :test do
+  gem 'rspec-rails'
+end
 
 # 
