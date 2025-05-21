@@ -39,7 +39,7 @@ birthday	            date	      null: false	              生年月日
 商品出品機能に必要なテーブル
 itemsテーブル
 カラム名	             データ型	  制約	　　　　　　　           補足
-name	　　            string	　　   null: false	　　　         商品名
+name	　　            string	　　   null: false	　　　         商品
 description	            text          null: false                 商品説明
 category_id             integer       null: false	              ActiveHash
 status_id	            integer	      null: false	              ActiveHash（商品の状態）
