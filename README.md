@@ -65,8 +65,6 @@ area_id	                integer	　　  null: false	　　　         ActiveHash
 city	　　            string        null: false	　　　         市区町村
 street	　　            string        null: false	　　　         番地
 building　　            string		　　　　　　　　　              建物名（任意）
-
-phone_number	
-　　　　　　　string	null: false	　　          電話番号
+phone_number            string        null: false	　　          電話番号
 
 
