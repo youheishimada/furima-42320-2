@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
         
@@ -18,3 +22,5 @@ class User < ApplicationRecord
                     message: 'は英字と数字の両方を含めて設定してください' 
                                        }   
 end
+has_many :items
+has_many :orders
