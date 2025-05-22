@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_21_064209) do
     t.integer "status_id"
     t.integer "shipping_fee_id"
     t.integer "area_id"
-    t.integer "day_id"
+    t.integer "shipping_day_id"
     t.integer "price"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
