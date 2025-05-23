@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
   belongs_to :user
-   has_one_attached :image  # 画像1枚
+  has_one_attached :image  # ActiveStorageによる画像1枚の紐付け
 
-    # ActiveHashとのアソシエーション
+  # ActiveHashとのアソシエーション
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :status
@@ -10,17 +10,21 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :shipping_day
 
-  # バリデーション
+  # バリデーション（入力必須）
   with_options presence: true do
-    validates :name
+    validates :name, length: { maximum: 40 } 
     validates :description
+    validates :price
+    validates :image
+  end
+
+  # プルダウン選択肢が未選択（---）でないことを確認（id: 1 を除外）
+  with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :status_id
     validates :shipping_fee_id
     validates :area_id
     validates :shipping_day_id
-    validates :price
-    validates :image
   end
 
   validates :category_id, :status_id, :shipping_fee_id, :area_id, :shipping_day_id,
