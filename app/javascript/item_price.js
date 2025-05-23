@@ -1,9 +1,11 @@
 // item_price.js
-window.addEventListener('turbo:load', () => {
+window.addEventListener('turbo:load', calc);
+window.addEventListener('turbo:render', calc);
+
+function calc() {
   const priceInput = document.getElementById("item-price");
   const addTaxDom = document.getElementById("add-tax-price");
   const profitDom = document.getElementById("profit");
-
   if (!priceInput) return;
 
   priceInput.addEventListener("input", () => {
@@ -18,4 +20,4 @@ window.addEventListener('turbo:load', () => {
       profitDom.innerText = '';
     }
   });
-});
+}
