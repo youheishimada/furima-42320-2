@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
    before_action :authenticate_user!, only: [:new, :create]
-  #def index
+  def index
    #@items = Item.all.order(created_at: :desc)
-  #end
+  end
 
   #def show
      #@item = Item.find(params[:id])
@@ -22,17 +22,10 @@ class ItemsController < ApplicationController
     end
  end
 
-  def edit
-  end
+  #def edit
+  #end
   
-# 商品の情報入力
-  def category_list
-    @categories = Category.all
-  end
 
-  def status_list
-    @statuses = Status.all
-  end
 
   private
 
