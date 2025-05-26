@@ -2,5 +2,4 @@
 import "@hotwired/turbo-rails";
 import "controllers";
 import "./item_price";
-import * as Rails from "@rails/ujs";  // ← 修正ポイント
 Rails.start();
