@@ -10,6 +10,12 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :shipping_day
 
+ # sold_out判定
+ # def sold_out?
+   # 購入管理テーブルがある前提
+    #purchase.present?
+ # end
+
   # バリデーション（入力必須）
   with_options presence: true do
     validates :name, length: { maximum: 40 } 
@@ -36,3 +42,4 @@ class Item < ApplicationRecord
     less_than_or_equal_to: 9_999_999
   }
 end
+
