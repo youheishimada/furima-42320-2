@@ -134,11 +134,8 @@
          <%# <%= link_to item_path(item) do %>
          <%= link_to "#" do %>
         <div class='item-img-content'>
-        <% if item.image.attached? %>
-          <%= image_tag item.image, class: "item-img" %>
-           <% else %>
-         <%= image_tag "item-sample.png", class: "item-img" %>
-           <% end %>
+
+        <%= image_tag item.image, class: "item-img" %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
@@ -152,7 +149,8 @@
             <%= item.name %>
           </h3>
           <div class='item-price'>
-            <span><%= number_with_delimiter(item.price) %>円<br> <%= item.shipping_fee_id == 1 ? "送料込み" : "着払い" %></span>
+            <span><%= number_with_delimiter(item.price) %>円<br>
+            <%= item.shipping_fee.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
