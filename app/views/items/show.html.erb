@@ -34,10 +34,10 @@
    <%# <%= link_to "削除", "#", data: {turbo_method: :delete}, class:"item-destroy" %> 
 
   <%# ---------------------------------------------- 表示テスト用（整理済み） %>
-  <% if user_signed_in? %>
-  <% if current_user == @item.user %>
-  <%= link_to "商品の編集", "#", class: "item-red-btn" %>
-    <p class="or-text">or</p>
+  <% if user_signed_in? && !@item.sold_out? %>
+   <% if current_user == @item.user %>
+   <%= link_to "商品の編集",  edit_item_path(@item), class: "item-red-btn" %>
+   <p class="or-text">or</p>
   <%= link_to "削除", "#", class: "item-destroy" %>
       <% else %>
   <%= link_to "購入画面に進む", "#", class: "item-red-btn" %>
@@ -46,10 +46,7 @@
 <%# ---------------------------------------------- 表示テスト用ここまで %>
 
 <%# ----------------------------------------------- 要件テスト用 %>
- <%#  <% if user_signed_in? && !@item.sold_out? %>
- <%#  <% if current_user == @item.user %>
- <%#  <%= link_to "商品の編集", "#", class: "item-red-btn" %>
- <%#  <p class="or-text">or</p> %>
+   
  <%#    <%= link_to "削除", "#", class: "item-destroy" %>
  <%#     <% else %>
  <%#    <%= link_to "購入画面に進む", "#", class: "item-red-btn" %>

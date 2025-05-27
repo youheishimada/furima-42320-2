@@ -10,13 +10,17 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :shipping_day
 
- # sold_out判定
-  #def sold_out? 
-    #purchase.present? # 購入管理テーブルがある前提
-  #end
+ #sold_out判定
+  def sold_out? 
+    purchase.present? # 購入管理テーブルがある前提
+  end
 
-  #has_one :purchase
+  has_one :purchase
 
+  # 確認用仮コード
+   def sold_out?
+      false  # 一時的に常に「販売中」とする
+   end
   # バリデーション（入力必須）
   with_options presence: true do
     validates :name, length: { maximum: 40 } 
