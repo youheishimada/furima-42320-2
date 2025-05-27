@@ -4,9 +4,9 @@ class ItemsController < ApplicationController
    @items = Item.all.order(created_at: :desc)
   end
 
-  #def show
-     #@item = Item.find(params[:id])
-  #end
+  def show
+     @item = Item.find(params[:id])
+  end
 
   def new
     @item = Item.new
@@ -22,17 +22,17 @@ class ItemsController < ApplicationController
     end
  end
 
-  # def edit
-  # end
+  #def edit
+  #end
   
-  # def update
-  # end
+  #def update
+  #end
 
-  # def destroy
-   # @item = Item.find(params[:id])
-   # @item.destroy
-   # redirect_to root_path
-  # end
+  #def destroy
+   #@item = Item.find(params[:id])
+   #@item.destroy
+   #redirect_to root_path
+  #end
 
   private
 
