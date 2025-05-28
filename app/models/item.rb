@@ -11,11 +11,11 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
 
  #sold_out判定
-   # def sold_out? 
-     # purchase.present? # 購入管理テーブルがある前提
-   # end
+   def sold_out? 
+     #purchase.present? # 購入管理テーブルがある前提
+   end
 
-  #has_one :purchase
+  has_one :purchase
 
   # バリデーション（入力必須）
   with_options presence: true do
