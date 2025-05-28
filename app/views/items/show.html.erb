@@ -9,11 +9,11 @@
     <div class="item-img-content">
       <%= image_tag @item.image, class:"item-box-img" %>
       
-        #<% if @item.sold_out? %>
-          <div class="sold-out">
-            <span>Sold Out!!</span>
-          </div>
-        #<% end %>
+       <%#  <% if @item.sold_out? %>
+         <%#  <div class="sold-out">
+           <%#  <span>Sold Out!!</span>
+         <%#  </div>
+       <%#  <% end %>
     
     </div>
     <div class="item-price-box">
@@ -24,41 +24,19 @@
           <%= @item.shipping_fee.name %>
       </span>
     </div>
-
-
-
   
-
-   <%# <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
-   <%# <p class="or-text">or</p> %>
-   <%# <%= link_to "削除", "#", data: {turbo_method: :delete}, class:"item-destroy" %> 
-
-  <%# ---------------------------------------------- 表示テスト用（整理済み） %>
-  <% if user_signed_in? %>
-  <% if current_user == @item.user %>
-  <%= link_to "商品の編集", "#", class: "item-red-btn" %>
-    <p class="or-text">or</p>
+      <%# 
+      <% if user_signed_in? && !@item.sold_out? %>
+      <% if user_signed_in? %>
+   <% if current_user == @item.user %>
+      <%= link_to "商品の編集",  edit_item_path(@item), class: "item-red-btn" %>
+      <p class="or-text">or</p>
   <%= link_to "削除", "#", class: "item-destroy" %>
       <% else %>
   <%= link_to "購入画面に進む", "#", class: "item-red-btn" %>
       <% end %>
       <% end %>
-<%# ---------------------------------------------- 表示テスト用ここまで %>
-
-<%# ----------------------------------------------- 要件テスト用 %>
- <%#  <% if user_signed_in? && !@item.sold_out? %>
- <%#  <% if current_user == @item.user %>
- <%#  <%= link_to "商品の編集", "#", class: "item-red-btn" %>
- <%#  <p class="or-text">or</p> %>
- <%#    <%= link_to "削除", "#", class: "item-destroy" %>
- <%#     <% else %>
- <%#    <%= link_to "購入画面に進む", "#", class: "item-red-btn" %>
- <%#     <% end %>
- <%#    <% end %>
-<%# ----------------------------------------------- 要件テスト用 %>
-
-   
-
+      
     <div class="item-explain-box">
       <span><%= @item.description %></span>
     </div>
