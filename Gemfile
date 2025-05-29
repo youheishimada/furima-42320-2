@@ -82,4 +82,6 @@ gem 'faker'
 gem 'factory_bot_rails'
 
 gem 'active_hash'
+
+gem 'payjp'
 # 
