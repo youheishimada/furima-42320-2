@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("turbo:load", () => {
+  document.addEventListener("turbo:render", () => {
   if (typeof PAYJP_PUBLIC_KEY === "undefined") return;
 
   const payjp = Payjp(PAYJP_PUBLIC_KEY);
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         form.appendChild(tokenInput);
         form.submit();
       }
+      });
     });
   });
 });

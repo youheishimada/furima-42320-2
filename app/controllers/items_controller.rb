@@ -4,11 +4,6 @@ class ItemsController < ApplicationController
   before_action :redirect_unless_authorized, only: [:edit, :update, :destroy]
   before_action :redirect_if_sold, only: [:edit]
 
-def redirect_if_sold
-  @item = Item.find(params[:id])
-  redirect_to root_path if @item.order.present?
-end
-
   def index
     @items = Item.all.order(created_at: :desc)
   end
@@ -57,6 +52,11 @@ end
     redirect_to root_path unless current_user == @item.user
   end
 
+  def redirect_if_sold
+   @item = Item.find(params[:id])
+   redirect_to root_path if @item.sold_out?
+  end
+
   def item_params
     params.require(:item).permit(
       :name, :description, :category_id, :status_id,
@@ -65,3 +65,7 @@ end
     )
   end
 end
+
+
+
+
