@@ -1,8 +1,8 @@
 document.addEventListener("turbo:load", () => {
-  document.addEventListener("turbo:render", () => {
-  if (typeof PAYJP_PUBLIC_KEY === "undefined") return;
+  // Payjpまたはgon.public_keyが未定義なら処理しない
+  if (typeof Payjp === "undefined" || typeof gon.public_key === "undefined") return;
 
-  const payjp = Payjp(PAYJP_PUBLIC_KEY);
+  const payjp = Payjp(gon.public_key);
   const elements = payjp.elements();
 
   const numberElement = elements.create("cardNumber");
@@ -15,6 +15,7 @@ document.addEventListener("turbo:load", () => {
   cvcElement.mount("#cvc-form");
 
   const form = document.getElementById("charge-form");
+  if (!form) return;
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -30,7 +31,6 @@ document.addEventListener("turbo:load", () => {
         form.appendChild(tokenInput);
         form.submit();
       }
-      });
     });
   });
 });
