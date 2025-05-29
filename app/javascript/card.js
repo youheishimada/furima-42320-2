@@ -1,23 +1,34 @@
-const payjp = Payjp("YOUR_PUBLIC_KEY"); // 公開鍵（.envやcredentialsで管理）
-const elements = payjp.elements();
-const card = elements.create("card");
-card.mount("#card-element");
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof PAYJP_PUBLIC_KEY === "undefined") return;
 
-const form = document.getElementById("charge-form");
+  const payjp = Payjp(PAYJP_PUBLIC_KEY);
+  const elements = payjp.elements();
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  payjp.createToken(card).then((response) => {
-    if (response.error) {
-      alert(response.error.message);
-    } else {
-      const token = response.id;
-      const tokenObj = document.createElement("input");
-      tokenObj.setAttribute("type", "hidden");
-      tokenObj.setAttribute("name", "token");
-      tokenObj.setAttribute("value", token);
-      form.appendChild(tokenObj);
-      form.submit();
-    }
+  const numberElement = elements.create("cardNumber");
+  numberElement.mount("#number-form");
+
+  const expiryElement = elements.create("cardExpiry");
+  expiryElement.mount("#expiry-form");
+
+  const cvcElement = elements.create("cardCvc");
+  cvcElement.mount("#cvc-form");
+
+  const form = document.getElementById("charge-form");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    payjp.createToken(numberElement).then((response) => {
+      if (response.error) {
+        alert(response.error.message);
+      } else {
+        const token = response.id;
+        const tokenInput = document.createElement("input");
+        tokenInput.setAttribute("type", "hidden");
+        tokenInput.setAttribute("name", "token");
+        tokenInput.setAttribute("value", token);
+        form.appendChild(tokenInput);
+        form.submit();
+      }
+    });
   });
 });

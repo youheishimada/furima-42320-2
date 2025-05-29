@@ -2,12 +2,19 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :redirect_unless_authorized, only: [:edit, :update, :destroy]
+  before_action :redirect_if_sold, only: [:edit]
+
+def redirect_if_sold
+  @item = Item.find(params[:id])
+  redirect_to root_path if @item.order.present?
+end
 
   def index
     @items = Item.all.order(created_at: :desc)
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def new
