@@ -1,10 +1,6 @@
-  document.addEventListener("turbo:load", () => {
-    // カード情報の初期化処理など
-  
-
-  document.addEventListener("turbo:render", () => {
-    // リロードや戻る時も再初期化が必要
-
+const initializeCardForm = () => {
+  const form = document.getElementById("charge-form");
+  if (!form) return;
   if (typeof Payjp === "undefined" || typeof gon.public_key === "undefined") return;
 
   const payjp = Payjp(gon.public_key);
@@ -18,9 +14,6 @@
 
   const cvcElement = elements.create("cardCvc");
   cvcElement.mount("#cvc-form");
-
-  const form = document.getElementById("charge-form");
-  if (!form) return;
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -38,5 +31,8 @@
       }
     });
   });
-});
-});
+};
+
+// turbo:load（初回表示）と turbo:render（戻るなど）で実行
+window.addEventListener("turbo:load", initializeCardForm);
+window.addEventListener("turbo:render", initializeCardForm);
