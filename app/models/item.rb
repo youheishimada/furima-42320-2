@@ -10,12 +10,11 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :shipping_day
 
- #sold_out判定
-   def sold_out? 
-     #purchase.present? # 購入管理テーブルがある前提
-   end
-
-  has_one :purchase
+  has_one :order
+  # 商品が売り切れかどうかを判定するメソッド
+  def sold_out? 
+    order.present?
+  end
 
   # バリデーション（入力必須）
   with_options presence: true do

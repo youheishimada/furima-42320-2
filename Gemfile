@@ -82,4 +82,15 @@ gem 'faker'
 gem 'factory_bot_rails'
 
 gem 'active_hash'
+
+gem 'payjp'
+
+
+group :development do
+  gem 'pry-rails'
+end
+
+gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'gon'
 # 
