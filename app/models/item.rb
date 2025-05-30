@@ -16,8 +16,6 @@ class Item < ApplicationRecord
     order.present?
   end
 
-  has_one :purchase
-
   # バリデーション（入力必須）
   with_options presence: true do
     validates :name, length: { maximum: 40 } 

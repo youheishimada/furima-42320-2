@@ -1,5 +1,10 @@
-document.addEventListener("turbo:load", () => {
-  // Payjpまたはgon.public_keyが未定義なら処理しない
+  document.addEventListener("turbo:load", () => {
+    // カード情報の初期化処理など
+  
+
+  document.addEventListener("turbo:render", () => {
+    // リロードや戻る時も再初期化が必要
+
   if (typeof Payjp === "undefined" || typeof gon.public_key === "undefined") return;
 
   const payjp = Payjp(gon.public_key);
@@ -33,4 +38,5 @@ document.addEventListener("turbo:load", () => {
       }
     });
   });
+});
 });
