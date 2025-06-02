@@ -1,11 +1,23 @@
 .error-alert {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 5vh;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 0 10px 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  justify-content: center; /* ← 中央寄せ */
+}
+
+.error-alert ul {
+  list-style: disc inside;  /* ← ● を付ける・インラインで配置 */
+  padding-left: 1em;        /* ← ●の位置を少し調整 */
+  text-align: left;         /* ← テキストは左揃え */
+  margin: 0;
 }
 
 .error-message {
-  font-size: 1.3vw;
-  list-style: circle;
-  color: rgb(182, 48, 0);
+  color: #cc0000 !important;
+  font-size: 14px !important;
+  margin-bottom: 4px !important;
 }
