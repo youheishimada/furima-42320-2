@@ -17,9 +17,22 @@ const initializeCardForm = () => {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+
     payjp.createToken(numberElement).then((response) => {
+      const errorContainer = document.getElementById("card-errors");
+
       if (response.error) {
-        alert(response.error.message);
+        // if (errorContainer) {
+        //   // HTMLとして整形して表示（Railsのエラー表示と統一）
+        //   errorContainer.innerHTML = `
+        //     <div class="error-alert">
+        //       <ul>
+        //         <li class="error-message">${response.error.message}</li>
+        //       </ul>
+        //     </div>
+        //   `;
+        //   errorContainer.style.display = "block";
+        // }
       } else {
         const token = response.id;
         const tokenInput = document.createElement("input");
@@ -27,12 +40,16 @@ const initializeCardForm = () => {
         tokenInput.setAttribute("name", "token");
         tokenInput.setAttribute("value", token);
         form.appendChild(tokenInput);
-        form.submit();
+
+        if (errorContainer) {
+          errorContainer.innerHTML = "";
+          errorContainer.style.display = "none";
+        }       
       }
+      form.submit();
     });
   });
 };
 
-// turbo:load（初回表示）と turbo:render（戻るなど）で実行
 window.addEventListener("turbo:load", initializeCardForm);
 window.addEventListener("turbo:render", initializeCardForm);

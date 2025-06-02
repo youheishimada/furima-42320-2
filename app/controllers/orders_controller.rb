@@ -6,6 +6,8 @@ class OrdersController < ApplicationController
   def index
     @order_address = OrderAddress.new
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"] # ← これを追加
+
   end
 
   def create
@@ -15,6 +17,7 @@ class OrdersController < ApplicationController
     @order_address.save
     redirect_to root_path
   else
+     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     render :index
   end
   end

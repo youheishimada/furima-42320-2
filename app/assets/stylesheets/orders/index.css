@@ -165,3 +165,18 @@
   margin-bottom: 20px;
   color: #cc0000;
 }
+
+/* 共通エラー表示（フォーム全体のバリデーションとカードエラーの両方に対応） */
+.error-alert {
+  background-color: #ffecec;
+  border: 1px solid #f5aca6;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.error-message {
+  color: #d8000c;
+  font-size: 14px;
+  margin-left: 20px;
+}
